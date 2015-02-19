@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Angular Routes</title>
+  <link rel="stylesheet" href="base.css"/>
+  <script src="/angular/angular.js"></script>
+  <script src="/angular-route/angular-route.js"></script>
+  <script src="/angular-resource/angular-resource.js"></script>
+  <script src="/controllers/listBlogsController.js"></script>
+  <script src="/services.js"></script>
+  <script>
+    angular.module('myApp', ['myApp.controllers', 'ngRoute']).config(function ($routeProvider) {
+      $routeProvider.when('/showblog/:id', {
+        templateUrl: '/partials/showblog.html',
+        controller: 'ShowBlogController'
+      }).when('/newblog', {
+        templateUrl: '/partials/newblog.html',
+        controller: 'NewBlogController'
+      }).when('/listblogs', {
+        templateUrl: '/partials/listblogs.html',
+        controller: 'ListController as lc'
+      }).otherwise({
+        redirectTo: '/listblogs'
+      });
+    });
+  </script>
+</head>
+<body>
+<div ng-view></div>
+</body>
+</html>
